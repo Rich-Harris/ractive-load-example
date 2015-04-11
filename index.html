@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset='utf-8'>
+	<title>ractive-load example</title>
+
+	<link href='http://fonts.googleapis.com/css?family=Voltaire' rel='stylesheet' type='text/css'>
+</head>
+
+<body>
+	<h1>ractive-load example</h1>
+	<main>
+		<!-- app will get rendered here -->
+	</main>
+
+	<!-- ractive must come before ractive-load -->
+	<script src='ractive.js'></script>
+	<script src='ractive-load.js'></script>
+
+	<!-- we're also using the 'tap' plugin -->
+	<script src='ractive-events-tap.js'></script>
+
+	<script>
+		var app;
+
+		Ractive.load( 'BaseView.html' )
+			// Ractive.load() returns a promise - see
+			// https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise
+			.then( function ( BaseView ) {
+				// BaseView is a constructor that extends Ractive
+				// i.e. BaseView = Ractive.extend({...})
+				app = new BaseView({
+					el: 'main',
+					data: {
+						rating: 5
+					}
+				});
+			})
+			.catch( function ( err ) {
+				// the setTimeout ensures the error doesn't get swallowed
+				// (this can be a problem with promises...)
+				setTimeout( function ( err ) {
+					throw err;
+				});
+			});
+	</script>
+</body>
+</html>

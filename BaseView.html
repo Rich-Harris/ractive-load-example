@@ -1,0 +1,41 @@
+<!-- this indicates that this template uses Rating and
+     must be loaded first -->
+<link rel='ractive' href='./Rating.html'>
+
+<p class='current-rating'>current rating: <strong>{{rating}}</strong></p>
+
+<div class='ratings'>
+  <h3>Clickable Rating</h3>
+  <Rating max='10' rating='{{rating}}'/>
+
+  <h3>Readonly rating</h3>
+  <Rating max='10' rating='{{rating}}' readonly/>
+</div>
+
+<!-- these styles are 'encapsulated' - i.e. they don't
+     leak into the page and affect other elements -->
+<style>
+  h3 {
+    font-family: 'Voltaire';
+  }
+
+  .current-rating {
+    float: left;
+    margin-right: 2em;
+    padding-top: 2em;
+    text-align: center;
+  }
+
+  .current-rating strong {
+    display: block;
+    clear: both;
+    font-size: 6em;
+    font-family: 'Voltaire';
+  }
+
+  .ratings {
+    float: left;
+    border-left: 1px solid #eee;
+    padding-left: 1em;
+  }
+</style>
